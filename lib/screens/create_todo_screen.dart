@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:to_do_app/viewmodel/todo_list.dart';
 
-class TodoCreateScreen extends StatelessWidget {
+class TodoCreateScreen extends ConsumerWidget {
   final TextEditingController _controller = TextEditingController();
+
   final List<String> items = ['Apple', 'Banana', 'Cherry'];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final todoShow = ref.watch(riverpodTodoListProvider);
+    // converting List<TodoClass> into List<String>
+    final List<String> categories =
+        todoShow.todlist.map((todo) => todo.category!).toList();
     String? selectedValue;
 
     return Scaffold(
@@ -20,6 +27,12 @@ class TodoCreateScreen extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
+                onChanged: (value) {
+                  ref
+                      .read(riverpodTodoListProvider.notifier)
+                      .onUpdateTitle(value);
+                  print(value);
+                },
                 controller: _controller,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -32,7 +45,11 @@ class TodoCreateScreen extends StatelessWidget {
                   backgroundColor: Colors.deepOrangeAccent,
                   iconColor: Colors.black,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  ref.read(riverpodTodoListProvider.notifier).addTodoList();
+
+                  Navigator.pop(context);
+                },
                 label: const Text(
                   "Add Todo",
                   style: TextStyle(color: Colors.black),
@@ -41,7 +58,7 @@ class TodoCreateScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               DropdownButtonWidget(
-                items: items,
+                items: categories,
                 selectedValue: selectedValue,
                 onChanged: (value) {},
               ),

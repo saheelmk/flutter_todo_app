@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:to_do_app/screens/todo_list_screen.dart';
 
 void main() {
-  runApp(TodoApp());
+  runApp(ProviderScope(child: TodoApp()));
 }
 
 class TodoApp extends StatelessWidget {

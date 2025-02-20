@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:to_do_app/screens/category_list_screen.dart';
+import 'package:to_do_app/screens/create_todo_screen.dart';
+import 'package:to_do_app/viewmodel/todo_list.dart';
 
-class TodoListScreen extends StatelessWidget {
+class TodoListScreen extends ConsumerWidget {
   const TodoListScreen({
     super.key,
   });
@@ -9,7 +12,8 @@ class TodoListScreen extends StatelessWidget {
   static final String router = '/todolist';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final todoState = ref.watch(riverpodTodoListProvider);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -26,12 +30,26 @@ class TodoListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SafeArea(
-          child: Column(
-        children: [],
-      )),
+      body: ListView.separated(
+          itemBuilder: (ctx, index) {
+            final todo = todoState.todlist[index];
+            return ListTile(
+              title: Text(todo.title!),
+            );
+          },
+          separatorBuilder: (ctx, index) => SizedBox(
+                height: 16,
+              ),
+          itemCount: todoState.todlist.length),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (ctx) => TodoCreateScreen(),
+            ),
+          );
+        },
         child: Icon(
           Icons.add,
           color: Colors.deepOrangeAccent,
