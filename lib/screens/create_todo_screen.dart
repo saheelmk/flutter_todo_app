@@ -12,7 +12,7 @@ class TodoCreateScreen extends ConsumerWidget {
     final todoShow = ref.watch(riverpodTodoListProvider);
     // converting List<TodoClass> into List<String>
     final List<String> categories =
-        todoShow.todlist.map((todo) => todo.category!).toList();
+        todoShow.categorylist.map((todo) => todo.category!).toList();
     String? selectedValue;
 
     return Scaffold(

@@ -32,15 +32,29 @@ class TodoListScreen extends ConsumerWidget {
       ),
       body: ListView.separated(
           itemBuilder: (ctx, index) {
-            final todo = todoState.todlist[index];
+            final todo = todoState.todolist[index];
             return ListTile(
               title: Text(todo.title!),
+              trailing: IconButton(
+                onPressed: () {
+                  ref
+                      .read(riverpodTodoListProvider.notifier)
+                      .deleteTodoList(index);
+                  print(index);
+                },
+                icon: Icon(Icons.delete),
+              ),
             );
           },
           separatorBuilder: (ctx, index) => SizedBox(
                 height: 16,
+                child: Divider(
+                  indent: 15,
+                  endIndent: 15,
+                  color: Colors.deepOrangeAccent,
+                ),
               ),
-          itemCount: todoState.todlist.length),
+          itemCount: todoState.todolist.length),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(

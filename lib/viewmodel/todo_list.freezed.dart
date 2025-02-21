@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TodoListState {
   TodoClass get todomodel => throw _privateConstructorUsedError;
-  List<TodoClass> get todlist => throw _privateConstructorUsedError;
+  List<TodoClass> get todolist => throw _privateConstructorUsedError;
+  List<TodoClass> get categorylist => throw _privateConstructorUsedError;
 
   /// Create a copy of TodoListState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +33,10 @@ abstract class $TodoListStateCopyWith<$Res> {
           TodoListState value, $Res Function(TodoListState) then) =
       _$TodoListStateCopyWithImpl<$Res, TodoListState>;
   @useResult
-  $Res call({TodoClass todomodel, List<TodoClass> todlist});
+  $Res call(
+      {TodoClass todomodel,
+      List<TodoClass> todolist,
+      List<TodoClass> categorylist});
 
   $TodoClassCopyWith<$Res> get todomodel;
 }
@@ -53,16 +57,21 @@ class _$TodoListStateCopyWithImpl<$Res, $Val extends TodoListState>
   @override
   $Res call({
     Object? todomodel = null,
-    Object? todlist = null,
+    Object? todolist = null,
+    Object? categorylist = null,
   }) {
     return _then(_value.copyWith(
       todomodel: null == todomodel
           ? _value.todomodel
           : todomodel // ignore: cast_nullable_to_non_nullable
               as TodoClass,
-      todlist: null == todlist
-          ? _value.todlist
-          : todlist // ignore: cast_nullable_to_non_nullable
+      todolist: null == todolist
+          ? _value.todolist
+          : todolist // ignore: cast_nullable_to_non_nullable
+              as List<TodoClass>,
+      categorylist: null == categorylist
+          ? _value.categorylist
+          : categorylist // ignore: cast_nullable_to_non_nullable
               as List<TodoClass>,
     ) as $Val);
   }
@@ -86,7 +95,10 @@ abstract class _$$TodoListStateImplCopyWith<$Res>
       __$$TodoListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TodoClass todomodel, List<TodoClass> todlist});
+  $Res call(
+      {TodoClass todomodel,
+      List<TodoClass> todolist,
+      List<TodoClass> categorylist});
 
   @override
   $TodoClassCopyWith<$Res> get todomodel;
@@ -106,16 +118,21 @@ class __$$TodoListStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? todomodel = null,
-    Object? todlist = null,
+    Object? todolist = null,
+    Object? categorylist = null,
   }) {
     return _then(_$TodoListStateImpl(
       todomodel: null == todomodel
           ? _value.todomodel
           : todomodel // ignore: cast_nullable_to_non_nullable
               as TodoClass,
-      todlist: null == todlist
-          ? _value._todlist
-          : todlist // ignore: cast_nullable_to_non_nullable
+      todolist: null == todolist
+          ? _value._todolist
+          : todolist // ignore: cast_nullable_to_non_nullable
+              as List<TodoClass>,
+      categorylist: null == categorylist
+          ? _value._categorylist
+          : categorylist // ignore: cast_nullable_to_non_nullable
               as List<TodoClass>,
     ));
   }
@@ -125,22 +142,33 @@ class __$$TodoListStateImplCopyWithImpl<$Res>
 
 class _$TodoListStateImpl implements _TodoListState {
   const _$TodoListStateImpl(
-      {required this.todomodel, required final List<TodoClass> todlist})
-      : _todlist = todlist;
+      {required this.todomodel,
+      required final List<TodoClass> todolist,
+      required final List<TodoClass> categorylist})
+      : _todolist = todolist,
+        _categorylist = categorylist;
 
   @override
   final TodoClass todomodel;
-  final List<TodoClass> _todlist;
+  final List<TodoClass> _todolist;
   @override
-  List<TodoClass> get todlist {
-    if (_todlist is EqualUnmodifiableListView) return _todlist;
+  List<TodoClass> get todolist {
+    if (_todolist is EqualUnmodifiableListView) return _todolist;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_todlist);
+    return EqualUnmodifiableListView(_todolist);
+  }
+
+  final List<TodoClass> _categorylist;
+  @override
+  List<TodoClass> get categorylist {
+    if (_categorylist is EqualUnmodifiableListView) return _categorylist;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categorylist);
   }
 
   @override
   String toString() {
-    return 'TodoListState(todomodel: $todomodel, todlist: $todlist)';
+    return 'TodoListState(todomodel: $todomodel, todolist: $todolist, categorylist: $categorylist)';
   }
 
   @override
@@ -150,12 +178,17 @@ class _$TodoListStateImpl implements _TodoListState {
             other is _$TodoListStateImpl &&
             (identical(other.todomodel, todomodel) ||
                 other.todomodel == todomodel) &&
-            const DeepCollectionEquality().equals(other._todlist, _todlist));
+            const DeepCollectionEquality().equals(other._todolist, _todolist) &&
+            const DeepCollectionEquality()
+                .equals(other._categorylist, _categorylist));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, todomodel, const DeepCollectionEquality().hash(_todlist));
+      runtimeType,
+      todomodel,
+      const DeepCollectionEquality().hash(_todolist),
+      const DeepCollectionEquality().hash(_categorylist));
 
   /// Create a copy of TodoListState
   /// with the given fields replaced by the non-null parameter values.
@@ -169,12 +202,15 @@ class _$TodoListStateImpl implements _TodoListState {
 abstract class _TodoListState implements TodoListState {
   const factory _TodoListState(
       {required final TodoClass todomodel,
-      required final List<TodoClass> todlist}) = _$TodoListStateImpl;
+      required final List<TodoClass> todolist,
+      required final List<TodoClass> categorylist}) = _$TodoListStateImpl;
 
   @override
   TodoClass get todomodel;
   @override
-  List<TodoClass> get todlist;
+  List<TodoClass> get todolist;
+  @override
+  List<TodoClass> get categorylist;
 
   /// Create a copy of TodoListState
   /// with the given fields replaced by the non-null parameter values.

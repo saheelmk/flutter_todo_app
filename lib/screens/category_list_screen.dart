@@ -20,15 +20,24 @@ class CategoryListScreen extends ConsumerWidget {
       ),
       body: ListView.separated(
           itemBuilder: (ctx, index) {
-            final todo = todoShow.todlist[index];
+            final todo = todoShow.categorylist[index];
             return ListTile(
               title: Text(todo.category!),
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.delete),
+              ),
             );
           },
           separatorBuilder: (ctx, index) => SizedBox(
                 height: 16,
+                child: Divider(
+                  indent: 15,
+                  endIndent: 15,
+                  color: Colors.deepOrangeAccent,
+                ),
               ),
-          itemCount: todoShow.todlist.length),
+          itemCount: todoShow.categorylist.length),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(

@@ -9,7 +9,8 @@ part 'todo_list.freezed.dart';
 class TodoListState with _$TodoListState {
   const factory TodoListState({
     required TodoClass todomodel,
-    required List<TodoClass> todlist,
+    required List<TodoClass> todolist,
+    required List<TodoClass> categorylist,
   }) = _TodoListState;
 }
 
@@ -19,7 +20,8 @@ class RiverpodTodoList extends _$RiverpodTodoList {
   TodoListState build() {
     return TodoListState(
       todomodel: TodoClass.empty(),
-      todlist: [],
+      todolist: [],
+      categorylist: [],
     );
   }
 
@@ -31,7 +33,14 @@ class RiverpodTodoList extends _$RiverpodTodoList {
 
   void addTodoList() {
     state = state.copyWith(
-      todlist: [...state.todlist, state.todomodel],
+      todolist: [...state.todolist, state.todomodel],
+      todomodel: TodoClass.empty(),
+    );
+  }
+
+  void addCategoryList() {
+    state = state.copyWith(
+      categorylist: [...state.categorylist, state.todomodel],
       todomodel: TodoClass.empty(),
     );
   }
@@ -42,10 +51,8 @@ class RiverpodTodoList extends _$RiverpodTodoList {
     );
   }
 
-  void addCategoryList() {
-    state = state.copyWith(
-      todlist: [...state.todlist, state.todomodel],
-      todomodel: TodoClass.empty(),
-    );
+  void deleteTodoList(int index) {
+    final newList = List.of(state.todolist)..removeAt(index);
+    state = state.copyWith(todolist: newList);
   }
 }
