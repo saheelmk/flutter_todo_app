@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:to_do_app/viewmodel/todo_list.dart';
 
 class TodoCreateScreen extends ConsumerWidget {
-  final TextEditingController _controller = TextEditingController();
+  static final String router = '/todocreate';
 
   final List<String> items = ['Apple', 'Banana', 'Cherry'];
 
@@ -33,7 +33,6 @@ class TodoCreateScreen extends ConsumerWidget {
                       .onUpdateTitle(value);
                   print(value);
                 },
-                controller: _controller,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter Todo !",

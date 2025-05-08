@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "856042869828",
+    "project_id": "simple-todo-efb4c",
+    "storage_bucket": "simple-todo-efb4c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856042869828:android:e24c97443f6f3d6d565811",
+        "android_client_info": {
+          "package_name": "com.example.to_do_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN010V3eo0ChCaiQBdv_qHyBS4TPTMkmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
